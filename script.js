@@ -82,7 +82,8 @@ function updateStreak() {
     }
   }
 
-  streakEl.textContent = "Llevas " + streak + " días";
+  // 👇 SOLO EMOJI + NÚMERO
+  streakEl.textContent = "✨ " + streak;
 }
 
 renderCalendar();
