@@ -32,7 +32,7 @@ button {
   height: 100%;
   width: 0%;
   background: black;
-  transition: width 0.2s linear;
+  transition: width 0.1s linear;
 }
 
 .time {
@@ -43,29 +43,25 @@ button {
   color: #555;
 }
 
-.streak {
-  margin-top: 25px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
 #calendar {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .day {
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
   margin: 4px;
   border-radius: 50%;
-  background: #ddd;
-  font-size: 10px;
+  background: #ccc;
 }
 
 .completed {
   background: black;
-  color: white;
+}
+
+#streak {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 500;
 }
