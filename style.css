@@ -1,0 +1,27 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f5f2ed;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.day {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin: 4px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.completed {
+  background: black;
+}
