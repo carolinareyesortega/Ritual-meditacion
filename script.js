@@ -32,5 +32,62 @@ audioPlayer.addEventListener("timeupdate", () => {
   if (!duration) return;
 
   const percent = (currentTime / duration) * 100;
-  progress.
+  progress.style.width = percent + "%";
 
+  currentTimeEl.textContent = formatTime(currentTime);
+  remainingTimeEl.textContent = "-" + formatTime(duration - currentTime);
+});
+
+audioPlayer.addEventListener("ended", () => {
+  const today = new Date().toISOString().split("T")[0];
+  localStorage.setItem(today, "completed");
+  renderCalendar();
+  updateStreak();
+});
+
+function formatTime(seconds) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+  return min + ":" + (sec < 10 ? "0" + sec : sec);
+}
+
+function renderCalendar() {
+  const calendar = document.getElementById("calendar");
+  calendar.innerHTML = "";
+
+  for (let i = 29; i >= 0; i--) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    const key = date.toISOString().split("T")[0];
+
+    const dayEl = document.createElement("div");
+    dayEl.classList.add("day");
+    dayEl.textContent = date.getDate();
+
+    if (localStorage.getItem(key)) {
+      dayEl.classList.add("completed");
+    }
+
+    calendar.appendChild(dayEl);
+  }
+}
+
+function updateStreak() {
+  let streak = 0;
+  let date = new Date();
+
+  while (true) {
+    const key = date.toISOString().split("T")[0];
+    if (localStorage.getItem(key)) {
+      streak++;
+      date.setDate(date.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  streakEl.textContent = "🔥 Racha actual: " + streak + " días";
+}
+
+renderCalendar();
+updateStreak();
