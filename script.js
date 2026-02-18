@@ -2,13 +2,13 @@ const audioPlayer = document.getElementById("audioPlayer");
 const startBtn = document.getElementById("startBtn");
 
 const tracks = [
-  "audio/Dia7.mp3", // Domingo
-  "audio/Dia1.mp3", // Lunes
-  "audio/Dia2.mp3", // Martes
-  "audio/Dia3.mp3", // Miércoles
-  "audio/Dia4.mp3", // Jueves
-  "audio/Dia5.mp3", // Viernes
-  "audio/Dia6.mp3"  // Sábado
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445861/Dia7_kf3qqj.mp3", // Domingo
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445858/Dia1_fbioum.mp3", // Lunes
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445860/Dia2_bip1yp.mp3", // Martes
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445859/Dia3_qdih9z.mp3", // Miércoles
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445858/Dia4_cfa8yf.mp3", // Jueves
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445859/Dia5_teuvsh.mp3", // Viernes
+  "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445858/Dia6_en5foj.mp3"  // Sábado
 ];
 
 function getTodayTrack() {
