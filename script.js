@@ -83,7 +83,7 @@ function updateStreak() {
   }
 
   // 👇 SOLO EMOJI + NÚMERO
-  streakEl.textContent = "✨ " + streak;
+  streakEl.textContent = "✨ " + streak +  " días" ;
 }
 
 renderCalendar();
