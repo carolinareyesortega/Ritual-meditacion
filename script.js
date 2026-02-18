@@ -1,5 +1,6 @@
 const audioPlayer = document.getElementById("audioPlayer");
 const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
 const progress = document.getElementById("progress");
 const currentTimeEl = document.getElementById("currentTime");
 const remainingTimeEl = document.getElementById("remainingTime");
@@ -20,8 +21,20 @@ function getTodayTrack() {
 }
 
 startBtn.addEventListener("click", () => {
-  audioPlayer.src = getTodayTrack();
+  if (!audioPlayer.src) {
+    audioPlayer.src = getTodayTrack();
+  }
   audioPlayer.play();
+});
+
+pauseBtn.addEventListener("click", () => {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    pauseBtn.textContent = "Pausar";
+  } else {
+    audioPlayer.pause();
+    pauseBtn.textContent = "Reanudar";
+  }
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
@@ -82,8 +95,7 @@ function updateStreak() {
     }
   }
 
-  // 👇 SOLO EMOJI + NÚMERO
-  streakEl.textContent = "✨ " + streak +  " días" ;
+  streakEl.innerHTML = "&#10024; " + streak;
 }
 
 renderCalendar();
