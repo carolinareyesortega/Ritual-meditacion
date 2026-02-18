@@ -16,8 +16,7 @@ const tracks = [
 ];
 
 function getTodayTrack() {
-  const day = new Date().getDay();
-  return tracks[day];
+  return tracks[new Date().getDay()];
 }
 
 startBtn.addEventListener("click", () => {
@@ -26,16 +25,14 @@ startBtn.addEventListener("click", () => {
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
-  const currentTime = audioPlayer.currentTime;
-  const duration = audioPlayer.duration;
+  if (!audioPlayer.duration) return;
 
-  if (!duration) return;
-
-  const percent = (currentTime / duration) * 100;
+  const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
   progress.style.width = percent + "%";
 
-  currentTimeEl.textContent = formatTime(currentTime);
-  remainingTimeEl.textContent = "-" + formatTime(duration - currentTime);
+  currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+  remainingTimeEl.textContent =
+    "-" + formatTime(audioPlayer.duration - audioPlayer.currentTime);
 });
 
 audioPlayer.addEventListener("ended", () => {
@@ -60,15 +57,14 @@ function renderCalendar() {
     date.setDate(date.getDate() - i);
     const key = date.toISOString().split("T")[0];
 
-    const dayEl = document.createElement("div");
-    dayEl.classList.add("day");
-    dayEl.textContent = date.getDate();
+    const dot = document.createElement("div");
+    dot.classList.add("day");
 
     if (localStorage.getItem(key)) {
-      dayEl.classList.add("completed");
+      dot.classList.add("completed");
     }
 
-    calendar.appendChild(dayEl);
+    calendar.appendChild(dot);
   }
 }
 
@@ -86,7 +82,7 @@ function updateStreak() {
     }
   }
 
-  streakEl.textContent = "🔥 Racha actual: " + streak + " días";
+  streakEl.textContent = "Racha actual: " + streak + " días";
 }
 
 renderCalendar();
