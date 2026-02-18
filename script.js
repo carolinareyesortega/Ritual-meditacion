@@ -3,6 +3,7 @@ const startBtn = document.getElementById("startBtn");
 const progress = document.getElementById("progress");
 const currentTimeEl = document.getElementById("currentTime");
 const remainingTimeEl = document.getElementById("remainingTime");
+const streakEl = document.getElementById("streak");
 
 const tracks = [
   "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445861/Dia7_kf3qqj.mp3",
@@ -25,47 +26,11 @@ startBtn.addEventListener("click", () => {
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
-  const { currentTime, duration } = audioPlayer;
+  const currentTime = audioPlayer.currentTime;
+  const duration = audioPlayer.duration;
 
-  if (duration) {
-    const percent = (currentTime / duration) * 100;
-    progress.style.width = percent + "%";
+  if (!duration) return;
 
-    currentTimeEl.textContent = formatTime(currentTime);
-    remainingTimeEl.textContent = "-" + formatTime(duration - currentTime);
-  }
-});
+  const percent = (currentTime / duration) * 100;
+  progress.
 
-audioPlayer.addEventListener("ended", () => {
-  const today = new Date().toISOString().split("T")[0];
-  localStorage.setItem(today, "completed");
-  renderCalendar();
-});
-
-function formatTime(seconds) {
-  const min = Math.floor(seconds / 60);
-  const sec = Math.floor(seconds % 60);
-  return min + ":" + (sec < 10 ? "0" + sec : sec);
-}
-
-function renderCalendar() {
-  const calendar = document.getElementById("calendar");
-  calendar.innerHTML = "";
-
-  for (let i = 29; i >= 0; i--) {
-    const date = new Date();
-    date.setDate(date.getDate() - i);
-    const key = date.toISOString().split("T")[0];
-
-    const day = document.createElement("div");
-    day.classList.add("day");
-
-    if (localStorage.getItem(key)) {
-      day.classList.add("completed");
-    }
-
-    calendar.appendChild(day);
-  }
-}
-
-renderCalendar();
