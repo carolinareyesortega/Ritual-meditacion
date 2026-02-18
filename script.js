@@ -82,7 +82,7 @@ function updateStreak() {
     }
   }
 
-  streakEl.textContent = "Racha actual: " + streak + " días";
+  streakEl.textContent = "Llevas " + streak + " días";
 }
 
 renderCalendar();
