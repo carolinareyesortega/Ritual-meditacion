@@ -2,13 +2,13 @@ const audioPlayer = document.getElementById("audioPlayer");
 const startBtn = document.getElementById("startBtn");
 
 const tracks = [
-  "domingo.mp3",
-  "lunes.mp3",
-  "martes.mp3",
-  "miercoles.mp3",
-  "jueves.mp3",
-  "viernes.mp3",
-  "sabado.mp3"
+  "audio/Dia7.mp3", // Domingo
+  "audio/Dia1.mp3", // Lunes
+  "audio/Dia2.mp3", // Martes
+  "audio/Dia3.mp3", // Miércoles
+  "audio/Dia4.mp3", // Jueves
+  "audio/Dia5.mp3", // Viernes
+  "audio/Dia6.mp3"  // Sábado
 ];
 
 function getTodayTrack() {
@@ -31,7 +31,7 @@ function renderCalendar() {
   const calendar = document.getElementById("calendar");
   calendar.innerHTML = "";
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 29; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     const key = date.toISOString().split("T")[0];
