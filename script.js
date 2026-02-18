@@ -1,10 +1,11 @@
 const audioPlayer = document.getElementById("audioPlayer");
 const startBtn = document.getElementById("startBtn");
-const pauseBtn = document.getElementById("pauseBtn");
 const progress = document.getElementById("progress");
 const currentTimeEl = document.getElementById("currentTime");
 const remainingTimeEl = document.getElementById("remainingTime");
 const streakEl = document.getElementById("streak");
+
+let hasStarted = false;
 
 const tracks = [
   "https://res.cloudinary.com/dfaws82zj/video/upload/v1771445861/Dia7_kf3qqj.mp3",
@@ -21,20 +22,26 @@ function getTodayTrack() {
 }
 
 startBtn.addEventListener("click", () => {
-  if (!audioPlayer.src) {
-    audioPlayer.src = getTodayTrack();
-  }
-  audioPlayer.play();
-});
 
-pauseBtn.addEventListener("click", () => {
+  // Primera vez
+  if (!hasStarted) {
+    audioPlayer.src = getTodayTrack();
+    audioPlayer.play();
+    startBtn.textContent = "Pausar";
+    hasStarted = true;
+    return;
+  }
+
+  // Si está pausado → reanudar
   if (audioPlayer.paused) {
     audioPlayer.play();
-    pauseBtn.textContent = "Pausar";
+    startBtn.textContent = "Pausar";
   } else {
+    // Si está sonando → pausar
     audioPlayer.pause();
-    pauseBtn.textContent = "Reanudar";
+    startBtn.textContent = "Reanudar";
   }
+
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
@@ -53,6 +60,9 @@ audioPlayer.addEventListener("ended", () => {
   localStorage.setItem(today, "completed");
   renderCalendar();
   updateStreak();
+
+  startBtn.textContent = "Empezar";
+  hasStarted = false;
 });
 
 function formatTime(seconds) {
