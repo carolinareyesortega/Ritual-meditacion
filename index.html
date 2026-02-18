@@ -6,21 +6,28 @@
 </head>
 <body>
 
-  <button id="startBtn">Empezar meditación</button>
+  <div class="container">
 
-  <div class="player">
-    <div class="progress-container">
-      <div class="progress" id="progress"></div>
+    <div class="controls">
+      <button id="startBtn">Empezar</button>
+      <button id="pauseBtn">Pausar</button>
     </div>
-    <div class="time">
-      <span id="currentTime">0:00</span>
-      <span id="remainingTime">-0:00</span>
+
+    <div class="player">
+      <div class="progress-container">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="time">
+        <span id="currentTime">0:00</span>
+        <span id="remainingTime">-0:00</span>
+      </div>
     </div>
+
+    <div id="calendar"></div>
+
+    <div id="streak"></div>
+
   </div>
-
-  <div id="calendar"></div>
-
-  <div id="streak"></div>
 
   <audio id="audioPlayer"></audio>
 
